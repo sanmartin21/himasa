@@ -102,6 +102,7 @@ const elements = {
   screenDescription: document.querySelector("#screen-description"),
   settingsForm: document.querySelector("#settings-form"),
   orderForm: document.querySelector("#order-form"),
+  orderRateKgPerHour: document.querySelector('#order-form [name="rateKgPerHour"]'),
   ordersBody: document.querySelector("#orders-body"),
   overviewOrders: document.querySelector("#overview-orders"),
   scrapOrders: document.querySelector("#scrap-orders"),
@@ -267,6 +268,7 @@ function renderSettings() {
   document.querySelector("#week-start-time").value = config.weekStartTime;
   document.querySelector("#week-end-day").value = String(config.weekEndDay);
   document.querySelector("#week-end-time").value = config.weekEndTime;
+  syncOrderFormRateDefault();
 }
 
 function renderMetrics() {
@@ -686,6 +688,7 @@ function handleOrderSubmit(event) {
 
   state.orders.push(order);
   elements.orderForm.reset();
+  syncOrderFormRateDefault(true);
   state.currentPlanningView = "queue";
   recalculateAndRender();
   showToast(`Ordem ${order.orderNumber || "nova"} adicionada a fila.`);
@@ -941,6 +944,18 @@ function parseDecimal(value, fallback) {
   const normalized = String(value).replace(",", ".");
   const numeric = Number(normalized);
   return Number.isFinite(numeric) ? numeric : fallback;
+}
+
+function syncOrderFormRateDefault(force = false) {
+  const nextDefault = String(normalizeConfig(state.config).defaultRate);
+  const previousDefault = elements.orderRateKgPerHour.dataset.defaultRate || "";
+  const currentValue = elements.orderRateKgPerHour.value.trim();
+
+  if (force || !currentValue || currentValue === previousDefault) {
+    elements.orderRateKgPerHour.value = nextDefault;
+  }
+
+  elements.orderRateKgPerHour.dataset.defaultRate = nextDefault;
 }
 
 function safeCsvField(value) {

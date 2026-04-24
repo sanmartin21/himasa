@@ -6,6 +6,7 @@ import {
   createCompletedOrderEvent,
   createOrderRecord,
   formatWindowLabel,
+  normalizeConfig,
   normalizeState,
   recalculatePlan,
   snapToWorkingTime,
@@ -119,4 +120,13 @@ test("cria snapshot de pedido finalizado com totais coerentes", () => {
   assert.equal(completed.orderId, "o1");
   assert.equal(completed.totalKg, 1050);
   assert.equal(completed.completedAt, "2026-04-22T09:30");
+});
+
+test("produtividade padrao invalida volta para 750", () => {
+  const config = normalizeConfig({
+    ...CONFIG,
+    defaultRate: 0,
+  });
+
+  assert.equal(config.defaultRate, 750);
 });

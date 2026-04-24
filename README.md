@@ -51,6 +51,7 @@ npm test
 
 - `numero da ordem` e `numero do pedido do cliente` representam o mesmo identificador comercial
 - `Seq.` representa apenas a posicao da ordem dentro da fila ativa
+- no cadastro de ordem, `Produtividade kg/h` abre preenchido com a produtividade padrao atual do sistema, iniciando em `750`
 - ao marcar um pedido como pronto, a ordem sai da fila ativa e vai para o historico de pedidos prontos
 - qualquer alteracao de fila, refugo ou finalizacao recalcula o plano restante
 

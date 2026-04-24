@@ -149,7 +149,10 @@ export function normalizeState(input) {
 export function normalizeConfig(input = {}) {
   return {
     baseStart: normalizeDateTimeLocal(input.baseStart, DEFAULT_CONFIG.baseStart),
-    defaultRate: coerceNumber(input.defaultRate, DEFAULT_CONFIG.defaultRate),
+    defaultRate: positiveOrFallback(
+      input.defaultRate,
+      DEFAULT_CONFIG.defaultRate,
+    ),
     weekStartDay: coerceDay(input.weekStartDay, DEFAULT_CONFIG.weekStartDay),
     weekStartTime: normalizeTimeString(
       input.weekStartTime,

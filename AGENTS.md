@@ -55,6 +55,9 @@ Quando uma task mudar comportamento do sistema, este arquivo deve ser atualizado
 - A produtividade padrao inicial e `750 kg/h`, mas pode ser alterada:
   - globalmente nas configuracoes
   - individualmente por ordem
+- No cadastro de ordem, o campo `Produtividade kg/h` deve abrir preenchido com a produtividade padrao atual do sistema.
+- Na configuracao inicial, isso significa `750 kg/h`.
+- Se a produtividade padrao salva estiver invalida ou zerada, o sistema deve voltar para `750 kg/h`.
 - A fila usa janela semanal de producao configuravel.
 - Configuracao inicial da janela:
   - abertura: `domingo 22:40`
