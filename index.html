@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planejamento de Producao Himasa</title>
+    <title>Planejamento de Produção Himasa</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -18,22 +18,22 @@
             />
             <div class="hero__brand-copy">
               <p class="eyebrow">Planejamento semanal</p>
-              <h1>Centro de Producao Himasa</h1>
+              <h1>Centro de Produção Himasa</h1>
             </div>
           </div>
           <p class="hero__lead">
             Sistema interno para planejar a fila, controlar o refugo e
-            organizar a operacao em telas separadas.
+            organizar a operação em telas separadas.
           </p>
         </div>
 
         <div class="hero__status">
           <article class="status-tile">
             <span>Janela produtiva</span>
-            <strong id="schedule-window">Domingo 22:40 ate Sabado 16:00</strong>
+            <strong id="schedule-window">Domingo 22:40 até Sábado 16:00</strong>
           </article>
           <article class="status-tile">
-            <span>Ultimo recalculo</span>
+            <span>Último recálculo</span>
             <strong id="last-recalc">--</strong>
           </article>
         </div>
@@ -42,42 +42,42 @@
       <div class="workspace-shell">
         <aside class="workspace-nav">
           <div class="workspace-nav__head">
-            <p class="eyebrow">Navegacao</p>
+            <p class="eyebrow">Navegação</p>
             <h2>Funcionalidades</h2>
             <p class="workspace-nav__copy">
-              Cada fluxo agora fica em uma tela propria para reduzir ruído
+              Cada fluxo agora fica em uma tela própria para reduzir ruído
               visual e evitar mistura de contexto.
             </p>
           </div>
 
           <nav id="view-nav" class="view-nav" aria-label="Telas principais">
             <button type="button" class="view-link" data-view="overview">
-              <span>Visao geral</span>
-              <small>Resumo da semana e proximas ordens</small>
+              <span>Visão geral</span>
+              <small>Resumo da semana e próximas ordens</small>
             </button>
             <button type="button" class="view-link" data-view="planning">
               <span>Planejamento</span>
-              <small>Cadastro, fila e reordenacao</small>
+              <small>Cadastro, fila e reordenação</small>
             </button>
             <button type="button" class="view-link" data-view="completed-history">
               <span>Pedidos prontos</span>
-              <small>Historico das ordens finalizadas</small>
+              <small>Histórico das ordens finalizadas</small>
             </button>
             <button type="button" class="view-link" data-view="scrap">
               <span>Refugos</span>
-              <small>Lancamento e historico por ordem</small>
+              <small>Lançamento e histórico por ordem</small>
             </button>
             <button type="button" class="view-link" data-view="settings">
-              <span>Configuracoes</span>
-              <small>Calendario, produtividade e utilitarios</small>
+              <span>Configurações</span>
+              <small>Calendário, produtividade e utilitários</small>
             </button>
           </nav>
 
           <div class="workspace-nav__foot">
-            <p class="eyebrow">Operacao</p>
+            <p class="eyebrow">Operação</p>
             <p class="workspace-nav__copy">
               Todos os dados continuam salvos automaticamente no navegador desta
-              maquina.
+              máquina.
             </p>
           </div>
         </aside>
@@ -85,9 +85,9 @@
         <main class="workspace-main">
           <section class="screen-banner">
             <p class="eyebrow" id="screen-eyebrow">Painel</p>
-            <h2 id="screen-title">Visao geral da operacao</h2>
+            <h2 id="screen-title">Visão geral da operação</h2>
             <p class="screen-banner__description" id="screen-description">
-              Resumo da semana, indicadores e leitura rapida da fila.
+              Resumo da semana, indicadores e leitura rápida da fila.
             </p>
           </section>
 
@@ -127,11 +127,11 @@
               <section class="panel">
                 <div class="panel__header">
                   <div>
-                    <p class="eyebrow">Proximas ordens</p>
-                    <h3>Leitura rapida da sequencia</h3>
+                    <p class="eyebrow">Próximas ordens</p>
+                    <h3>Leitura rápida da sequência</h3>
                   </div>
                   <p class="panel__hint">
-                    Amostra das proximas ordens para acompanhamento rapido.
+                    Amostra das próximas ordens para acompanhamento rápido.
                   </p>
                 </div>
 
@@ -173,7 +173,7 @@
                       <h3>Ordens planejadas</h3>
                     </div>
                     <p class="panel__hint">
-                      Cards editaveis para sequencia, dados produtivos e janela
+                      Cards editáveis para sequência, dados produtivos e janela
                       prevista de cada ordem.
                     </p>
                   </div>
@@ -186,8 +186,8 @@
                 <section class="panel">
                   <div class="panel__header">
                     <div>
-                      <p class="eyebrow">Inclusao</p>
-                      <h3>Nova ordem de producao</h3>
+                      <p class="eyebrow">Inclusão</p>
+                      <h3>Nova ordem de produção</h3>
                     </div>
                     <p class="panel__hint">
                       Cadastre uma ordem e ela entra automaticamente no fim da
@@ -197,7 +197,7 @@
 
                   <form id="order-form" class="order-form" autocomplete="off">
                     <label class="form-field">
-                      <span>Numero da ordem</span>
+                      <span>Número da ordem</span>
                       <input name="orderNumber" required />
                     </label>
 
@@ -248,16 +248,16 @@
                   class="subscreen-link"
                   data-scrap-view="launch"
                 >
-                  <span>Lancar refugo</span>
-                  <small>Selecionar ordens e registrar novos lancamentos</small>
+                  <span>Lançar refugo</span>
+                  <small>Selecionar ordens e registrar novos lançamentos</small>
                 </button>
                 <button
                   type="button"
                   class="subscreen-link"
                   data-scrap-view="history"
                 >
-                  <span>Historico</span>
-                  <small>Auditar e remover lancamentos de refugo</small>
+                  <span>Histórico</span>
+                  <small>Auditar e remover lançamentos de refugo</small>
                 </button>
               </nav>
 
@@ -265,11 +265,11 @@
                 <section class="panel">
                   <div class="panel__header">
                     <div>
-                      <p class="eyebrow">Lancar refugo</p>
-                      <h3>Ordens disponiveis</h3>
+                      <p class="eyebrow">Lançar refugo</p>
+                      <h3>Ordens disponíveis</h3>
                     </div>
                     <p class="panel__hint" id="history-hint">
-                      0 kg de refugo acumulado em 0 lancamento(s).
+                      0 kg de refugo acumulado em 0 lançamento(s).
                     </p>
                   </div>
 
@@ -282,10 +282,10 @@
                   <div class="panel__header">
                     <div>
                       <p class="eyebrow">Rastreabilidade</p>
-                      <h3>Historico de refugos</h3>
+                      <h3>Histórico de refugos</h3>
                     </div>
                     <p class="panel__hint">
-                      Cada lancamento pode ser auditado e removido se tiver sido
+                      Cada lançamento pode ser auditado e removido se tiver sido
                       inserido errado.
                     </p>
                   </div>
@@ -300,8 +300,8 @@
             <section class="panel">
               <div class="panel__header">
                 <div>
-                  <p class="eyebrow">Expedicao</p>
-                  <h3>Historico de pedidos prontos</h3>
+                  <p class="eyebrow">Expedição</p>
+                  <h3>Histórico de pedidos prontos</h3>
                 </div>
                 <p class="panel__hint" id="completed-history-hint">
                   Nenhum pedido pronto registrado ainda.
@@ -317,22 +317,22 @@
               <section class="panel">
                 <div class="panel__header">
                   <div>
-                    <p class="eyebrow">Parametros</p>
-                    <h3>Calendario e produtividade</h3>
+                    <p class="eyebrow">Parâmetros</p>
+                    <h3>Calendário e produtividade</h3>
                   </div>
                   <p class="panel__hint">
-                    Alteracoes aqui recalculam toda a fila automaticamente.
+                    Alterações aqui recalculam toda a fila automaticamente.
                   </p>
                 </div>
 
                 <form id="settings-form" class="settings-grid" autocomplete="off">
                   <label class="form-field">
-                    <span>Inicio base da fila</span>
+                    <span>Início base da fila</span>
                     <input id="base-start" type="datetime-local" required />
                   </label>
 
                   <label class="form-field">
-                    <span>Produtividade padrao (kg/h)</span>
+                    <span>Produtividade padrão (kg/h)</span>
                     <input
                       id="default-rate"
                       type="number"
@@ -366,11 +366,11 @@
               <section class="panel">
                 <div class="panel__header">
                   <div>
-                    <p class="eyebrow">Utilitarios</p>
-                    <h3>Saida e manutencao</h3>
+                    <p class="eyebrow">Utilitários</p>
+                    <h3>Saída e manutenção</h3>
                   </div>
                   <p class="panel__hint">
-                    Exporte relatorios ou restaure a base inicial padrao do
+                    Exporte relatórios ou restaure a base inicial padrão do
                     sistema.
                   </p>
                 </div>
@@ -384,10 +384,10 @@
                 </div>
 
                 <div class="note-card">
-                  <strong>Observacao operacional</strong>
+                  <strong>Observação operacional</strong>
                   <p>
-                    Os dados sao salvos automaticamente no navegador deste
-                    computador. A exportacao em CSV continua sendo compativel
+                    Os dados são salvos automaticamente no navegador deste
+                    computador. A exportação em CSV continua sendo compatível
                     com o Excel.
                   </p>
                 </div>
@@ -402,7 +402,7 @@
           <div class="print-report__brand">
             <img src="assets/logo-himasa.png" alt="Logo Himasa" class="print-report__logo" />
             <div>
-              <p class="print-report__eyebrow">Relatorio de producao</p>
+              <p class="print-report__eyebrow">Relatório de produção</p>
               <h1>Planejamento Operacional Himasa</h1>
               <p id="print-generated-at" class="print-report__meta">--</p>
             </div>
@@ -419,7 +419,7 @@
         <section class="print-report__section">
           <div class="print-report__section-head">
             <h2>Ordens planejadas</h2>
-            <p>Fila atual com calculo de kg, horas, inicio e termino previstos.</p>
+            <p>Fila atual com cálculo de kg, horas, início e término previstos.</p>
           </div>
 
           <table class="print-table">
@@ -432,8 +432,8 @@
                 <th>Refugo</th>
                 <th>KG/h</th>
                 <th>Horas</th>
-                <th>Inicio</th>
-                <th>Termino</th>
+                <th>Início</th>
+                <th>Término</th>
               </tr>
             </thead>
             <tbody id="print-orders-body"></tbody>
@@ -457,12 +457,12 @@
         </label>
 
         <label class="form-field">
-          <span>Data e hora do lancamento</span>
+          <span>Data e hora do lançamento</span>
           <input id="scrap-occurred-at" type="datetime-local" required />
         </label>
 
         <label class="form-field">
-          <span>Observacao</span>
+          <span>Observação</span>
           <textarea
             id="scrap-note"
             rows="3"
@@ -482,7 +482,7 @@
     <dialog id="completed-dialog" class="dialog">
       <form id="completed-form" class="dialog__surface">
         <div>
-          <p class="eyebrow">Expedicao</p>
+          <p class="eyebrow">Expedição</p>
           <h2 id="completed-dialog-title">Registrar pedido pronto</h2>
           <p id="completed-dialog-summary" class="dialog__meta">--</p>
         </div>
@@ -490,7 +490,7 @@
         <input id="completed-order-id" type="hidden" />
 
         <label class="form-field">
-          <span>Data e hora da finalizacao</span>
+          <span>Data e hora da finalização</span>
           <input id="completed-at" type="datetime-local" required />
         </label>
 

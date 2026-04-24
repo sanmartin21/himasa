@@ -20,33 +20,33 @@ const STORAGE_KEY = "himasa-production-planner:v1";
 const VIEW_META = {
   overview: {
     eyebrow: "Painel",
-    title: "Visao geral da operacao",
+    title: "Visão geral da operação",
     description:
-      "Resumo semanal da producao, indicadores principais e leitura rapida da sequencia.",
+      "Resumo semanal da produção, indicadores principais e leitura rápida da sequência.",
   },
   planning: {
     eyebrow: "Fila",
     title: "Planejamento operacional",
     description:
-      "Tela dedicada ao cadastro de ordens, ajuste de fila e reordenacao operacional.",
+      "Tela dedicada ao cadastro de ordens, ajuste de fila e reordenação operacional.",
   },
   "completed-history": {
-    eyebrow: "Expedicao",
-    title: "Historico de pedidos prontos",
+    eyebrow: "Expedição",
+    title: "Histórico de pedidos prontos",
     description:
-      "Pedidos finalizados saem da fila ativa e ficam registrados aqui com o horario da conclusao.",
+      "Pedidos finalizados saem da fila ativa e ficam registrados aqui com o horário da conclusão.",
   },
   scrap: {
     eyebrow: "Qualidade",
     title: "Controle de refugos",
     description:
-      "Lance refugos por ordem, acompanhe impacto no plano e consulte o historico.",
+      "Lance refugos por ordem, acompanhe impacto no plano e consulte o histórico.",
   },
   settings: {
-    eyebrow: "Parametros",
-    title: "Configuracoes do sistema",
+    eyebrow: "Parâmetros",
+    title: "Configurações do sistema",
     description:
-      "Ajuste calendario produtivo, produtividade padrao e utilitarios de exportacao.",
+      "Ajuste calendário produtivo, produtividade padrão e utilitários de exportação.",
   },
 };
 
@@ -55,7 +55,7 @@ const PLANNING_VIEW_META = {
     eyebrow: "Fila",
     title: "Planejamento operacional",
     description:
-      "Tela dedicada a organizar a fila, editar ordens existentes e controlar a sequencia.",
+      "Tela dedicada a organizar a fila, editar ordens existentes e controlar a sequência.",
   },
   create: {
     eyebrow: "Cadastro",
@@ -68,15 +68,15 @@ const PLANNING_VIEW_META = {
 const SCRAP_VIEW_META = {
   launch: {
     eyebrow: "Qualidade",
-    title: "Lancamento de refugo",
+    title: "Lançamento de refugo",
     description:
-      "Tela isolada para selecionar ordens, registrar refugos e recalcular a fila sem distracoes.",
+      "Tela isolada para selecionar ordens, registrar refugos e recalcular a fila sem distrações.",
   },
   history: {
     eyebrow: "Rastreabilidade",
-    title: "Historico de refugos",
+    title: "Histórico de refugos",
     description:
-      "Tela dedicada a auditar lancamentos, revisar observacoes e remover registros incorretos.",
+      "Tela dedicada a auditar lançamentos, revisar observações e remover registros incorretos.",
   },
 };
 
@@ -286,10 +286,10 @@ function renderMetrics() {
     : "--";
 
   elements.queueHint.textContent = lastOrder
-    ? `Fila recalculada ate ${formatDateTime(lastOrder.endAt)}.`
+    ? `Fila recalculada até ${formatDateTime(lastOrder.endAt)}.`
     : "Nenhuma ordem cadastrada para a fila atual.";
 
-  elements.historyHint.textContent = `${formatKg(totalScrap)} de refugo acumulado em ${state.scrapEvents.length} lancamento(s).`;
+  elements.historyHint.textContent = `${formatKg(totalScrap)} de refugo acumulado em ${state.scrapEvents.length} lançamento(s).`;
 }
 
 function renderOverviewOrders() {
@@ -318,7 +318,7 @@ function renderOverviewOrders() {
       </div>
 
       <p class="order-card__time">
-        ${formatDateTime(order.startAt)} ate ${formatDateTime(order.endAt)}
+        ${formatDateTime(order.startAt)} até ${formatDateTime(order.endAt)}
       </p>
 
       <button type="button" data-action="scrap" data-order-id="${order.id}">
@@ -391,12 +391,12 @@ function renderOrders() {
 
       <div class="queue-card__timeline">
         <div class="queue-timebox">
-          <span class="queue-label">Inicio</span>
+          <span class="queue-label">Início</span>
           <strong>${formatDateTime(order.startAt)}</strong>
         </div>
 
         <div class="queue-timebox">
-          <span class="queue-label">Termino</span>
+          <span class="queue-label">Término</span>
           <strong>${formatDateTime(order.endAt)}</strong>
         </div>
       </div>
@@ -428,11 +428,11 @@ function renderScrapOrders() {
       <div class="scrap-card__body">
         <span>Planejado: ${formatKg(order.plannedKg)}</span>
         <span>Total atual: ${formatKg(order.totalKg)}</span>
-        <span>Termino: ${formatDateTime(order.endAt)}</span>
+        <span>Término: ${formatDateTime(order.endAt)}</span>
       </div>
 
       <button type="button" data-action="scrap" data-order-id="${order.id}">
-        Lancar refugo nesta ordem
+        Lançar refugo nesta ordem
       </button>
     </article>
   `).join("");
@@ -442,7 +442,7 @@ function renderScrapHistory() {
   if (!state.scrapEvents.length) {
     elements.scrapHistory.innerHTML = `
       <li class="empty-history">
-        Nenhum refugo registrado. Os lancamentos aparecerao aqui para auditoria.
+        Nenhum refugo registrado. Os lançamentos aparecerão aqui para auditoria.
       </li>
     `;
     return;
@@ -469,7 +469,7 @@ function renderScrapHistory() {
         <div>
           <strong>${label}</strong>
           <p class="history-meta">${formatKg(event.kg)} em ${formatDateTime(event.occurredAt)}</p>
-          <p class="history-note">${escapeHtml(event.note || "Sem observacao.")}</p>
+          <p class="history-note">${escapeHtml(event.note || "Sem observação.")}</p>
         </div>
         <button type="button" class="ghost" data-action="remove-scrap" data-scrap-id="${event.id}">
           Remover
@@ -483,13 +483,13 @@ function renderCompletedHistory() {
   const totalCompleted = state.completedOrders.length;
 
   elements.completedHistoryHint.textContent = totalCompleted
-    ? `${totalCompleted} pedido(s) finalizado(s) registrado(s) nesta maquina.`
+    ? `${totalCompleted} pedido(s) finalizado(s) registrado(s) nesta máquina.`
     : "Nenhum pedido pronto registrado ainda.";
 
   if (!totalCompleted) {
     elements.completedHistory.innerHTML = `
       <li class="empty-history">
-        Nenhum pedido foi marcado como pronto. As finalizacoes aparecerao aqui.
+        Nenhum pedido foi marcado como pronto. As finalizações aparecerão aqui.
       </li>
     `;
     return;
@@ -511,7 +511,7 @@ function renderCompletedHistory() {
           Total ${formatKg(order.totalKg)} | ${formatHours(order.hours)}
         </p>
         <p class="history-note">
-          Janela registrada: ${formatDateTime(order.startAt)} ate ${formatDateTime(order.endAt)}
+          Janela registrada: ${formatDateTime(order.startAt)} até ${formatDateTime(order.endAt)}
         </p>
       </div>
       <span class="readonly-pill readonly-pill--success">Pronto</span>
@@ -729,14 +729,14 @@ function handleActionClick(event) {
   const { action, orderId, scrapId } = button.dataset;
 
   if (action === "remove-scrap") {
-    const confirmed = window.confirm("Remover este lancamento de refugo?");
+    const confirmed = window.confirm("Remover este lançamento de refugo?");
     if (!confirmed) {
       return;
     }
 
     state.scrapEvents = state.scrapEvents.filter((item) => item.id !== scrapId);
     recalculateAndRender();
-    showToast("Lancamento de refugo removido.");
+    showToast("Lançamento de refugo removido.");
     return;
   }
 
@@ -820,7 +820,7 @@ function handleCompletedSubmit(event) {
   const completedAt = elements.completedAt.value || toDateTimeInputValue(new Date());
 
   if (!orderId || !order) {
-    showToast("Nao foi possivel localizar a ordem para finalizar.");
+    showToast("Não foi possível localizar a ordem para finalizar.");
     return;
   }
 
@@ -880,7 +880,7 @@ function openCompletedDialog(order) {
 
 function restoreInitialSeed() {
   const confirmed = window.confirm(
-    "Restaurar os dados iniciais do sistema? Os dados locais atuais serao perdidos.",
+    "Restaurar os dados iniciais do sistema? Os dados locais atuais serão perdidos.",
   );
 
   if (!confirmed) {
@@ -898,7 +898,7 @@ function restoreInitialSeed() {
 
 function exportCurrentPlan() {
   const headers = [
-    "Sequencia",
+    "Sequência",
     "Ordem",
     "Cliente",
     "KG Planejado",
@@ -906,8 +906,8 @@ function exportCurrentPlan() {
     "KG Total",
     "Produtividade KG/H",
     "Horas",
-    "Inicio",
-    "Termino",
+    "Início",
+    "Término",
   ];
 
   const rows = state.plan.map((order) => [
@@ -937,7 +937,7 @@ function exportCurrentPlan() {
   link.download = "planejamento_producao.csv";
   link.click();
   URL.revokeObjectURL(url);
-  showToast("Relatorio CSV exportado.");
+  showToast("Relatório CSV exportado.");
 }
 
 function parseDecimal(value, fallback) {

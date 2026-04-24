@@ -92,7 +92,7 @@ test("refugo desloca a ordem atual e as seguintes", () => {
 test("descricao da janela reflete configuracao semanal", () => {
   assert.equal(
     formatWindowLabel(CONFIG),
-    "Domingo 22:40 ate Sabado 16:00",
+    "Domingo 22:40 até Sábado 16:00",
   );
 });
 

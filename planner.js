@@ -8,11 +8,11 @@ const MINUTES_PER_WEEK = 7 * MINUTES_PER_DAY;
 export const WEEKDAY_LABELS = [
   "Domingo",
   "Segunda",
-  "Terca",
+  "Terça",
   "Quarta",
   "Quinta",
   "Sexta",
-  "Sabado",
+  "Sábado",
 ];
 
 export const DEFAULT_CONFIG = Object.freeze({
@@ -214,7 +214,7 @@ export function formatKg(value) {
 
 export function formatWindowLabel(config) {
   const normalized = normalizeConfig(config);
-  return `${WEEKDAY_LABELS[normalized.weekStartDay]} ${normalized.weekStartTime} ate ${WEEKDAY_LABELS[normalized.weekEndDay]} ${normalized.weekEndTime}`;
+  return `${WEEKDAY_LABELS[normalized.weekStartDay]} ${normalized.weekStartTime} até ${WEEKDAY_LABELS[normalized.weekEndDay]} ${normalized.weekEndTime}`;
 }
 
 export function formatNumber(value, maximumFractionDigits = 2) {

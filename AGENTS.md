@@ -36,6 +36,7 @@ Quando uma task mudar comportamento do sistema, este arquivo deve ser atualizado
 - Assets visuais devem ficar em pastas dedicadas como `assets/` sempre que fizer sentido.
 - `README.md` deve refletir a estrutura funcional atual do sistema.
 - Alteracao funcional relevante exige sincronizacao entre codigo, `README.md` e `AGENTS.md`.
+- Textos visiveis da aplicacao devem sair em portugues brasileiro com acentuacao correta.
 
 ## Regras de negocio atuais
 
