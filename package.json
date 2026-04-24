@@ -1,9 +1,20 @@
 {
   "name": "himasa-production-planner",
+  "version": "1.0.0",
   "private": true,
+  "description": "Aplicacao web local para planejamento operacional de producao da Himasa.",
   "type": "module",
+  "author": "Joao Sanmartin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanmartin21/himasa.git"
+  },
   "scripts": {
+    "start": "python server.py",
     "serve": "python server.py",
     "test": "node tests/planner.test.js"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

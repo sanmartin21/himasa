@@ -1,36 +1,74 @@
-# Sistema de Planejamento de Producao
+# Himasa Production Planner
 
-Aplicacao web local para substituir a planilha `planejamento_producao.xlsx` com:
+Aplicacao web local para planejamento operacional de producao da Himasa. O projeto substitui a planilha operacional por uma interface web simples, com persistencia local no navegador e recalculo automatico da fila.
 
-- fila sequencial de ordens
-- calculo automatico de horas, inicio e termino
-- calendario semanal de producao
-- lancamento de refugo por ordem com recalculo imediato
-- exportacao em CSV compativel com Excel e impressao em PDF
-- interface separada em telas de visao geral, planejamento, refugos e configuracoes
+## Principais capacidades
+
+- fila sequencial de ordens com reordenacao manual
+- calculo automatico de horas, inicio e termino por ordem
+- janela semanal de producao configuravel
+- lancamento de refugo por ordem com impacto imediato no plano
+- registro de pedidos prontos com historico dedicado
+- exportacao em CSV e impressao em PDF
+- persistencia local via `localStorage`
+
+## Estrutura funcional
+
+- `Visao geral`: indicadores principais e leitura rapida das proximas ordens
+- `Planejamento > Fila`: edicao, sequenciamento e acoes operacionais
+- `Planejamento > Cadastro de ordem`: criacao de novas ordens
+- `Pedidos prontos`: historico de ordens finalizadas
+- `Refugos > Lancar refugo`: apontamento por ordem
+- `Refugos > Historico`: auditoria e remocao de lancamentos
+- `Configuracoes`: calendario, produtividade e utilitarios
+
+## Requisitos
+
+- Python 3.11+ para servir os arquivos localmente
+- Node.js 20+ para executar os testes do motor de calculo
 
 ## Como executar
 
-1. Rode `python server.py`
-2. Abra `http://127.0.0.1:8000`
-3. Para testar o motor de calculo, rode `node tests/planner.test.js`
+```bash
+python server.py
+```
 
-## Como funciona
+Abra `http://127.0.0.1:8000`.
 
-- Os dados ficam salvos no `localStorage` do navegador.
-- A base inicial da fila foi carregada a partir da planilha atual.
-- A interface foi separada em quatro telas para reduzir poluicao visual:
-  - `Visao geral`: indicadores e leitura rapida da fila
-  - `Planejamento`: agora dividido em `Fila` e `Cadastro de ordem`
-  - `Refugos`: agora dividido em `Lancar refugo` e `Historico`
-  - `Configuracoes`: calendario, produtividade e utilitarios
-- O calendario vem configurado para:
-  - abertura: `domingo 22:40`
-  - fechamento: `sabado 16:00`
-- A produtividade padrao inicial e `750 kg/h`, mas pode ser alterada por ordem ou na configuracao global.
+Alternativamente:
 
-## Observacoes
+```bash
+npm run serve
+```
 
-- O botao `Exportar CSV` gera um arquivo que abre normalmente no Excel.
-- O botao `Gerar PDF` usa a impressao do navegador.
-- O botao `Restaurar base inicial` apaga os dados locais atuais e volta para a carga original.
+## Testes
+
+```bash
+npm test
+```
+
+## Regras operacionais importantes
+
+- `numero da ordem` e `numero do pedido do cliente` representam o mesmo identificador comercial
+- `Seq.` representa apenas a posicao da ordem dentro da fila ativa
+- ao marcar um pedido como pronto, a ordem sai da fila ativa e vai para o historico de pedidos prontos
+- qualquer alteracao de fila, refugo ou finalizacao recalcula o plano restante
+
+## Persistencia
+
+- Os dados ficam salvos no navegador desta maquina.
+- O estado persistido inclui configuracoes, fila ativa, historico de refugos e historico de pedidos prontos.
+- `Restaurar base inicial` apaga os dados locais atuais e volta para a carga seed.
+
+## Estrutura do repositorio
+
+- `index.html`: estrutura da interface
+- `app.js`: controle de estado, interacoes e renderizacao
+- `planner.js`: motor de calculo e normalizacao dos dados
+- `styles.css`: estilos da aplicacao e impressao
+- `tests/planner.test.js`: cobertura principal do motor de calculo
+- `AGENTS.md`: fonte de verdade para regras de negocio e decisoes acumuladas
+
+## Fonte dos dados iniciais
+
+O arquivo `planejamento_producao.xlsx` permanece no repositorio como referencia da base operacional original.

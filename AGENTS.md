@@ -29,6 +29,14 @@ Quando uma task mudar comportamento do sistema, este arquivo deve ser atualizado
   - `https://github.com/sanmartin21`
 - Nao assumir disponibilidade de GitHub CLI (`gh`) neste ambiente sem verificar antes.
 
+## Convencoes de repositorio
+
+- Nomes de arquivos e pastas publicados no Git devem ser descritivos e estaveis.
+- Evitar nomes provisiorios ou informais como `copy`, `novo`, `teste`, `final`, `ajuste`.
+- Assets visuais devem ficar em pastas dedicadas como `assets/` sempre que fizer sentido.
+- `README.md` deve refletir a estrutura funcional atual do sistema.
+- Alteracao funcional relevante exige sincronizacao entre codigo, `README.md` e `AGENTS.md`.
+
 ## Regras de negocio atuais
 
 ### Fila de producao
