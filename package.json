@@ -1,0 +1,9 @@
+{
+  "name": "himasa-production-planner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python server.py",
+    "test": "node tests/planner.test.js"
+  }
+}

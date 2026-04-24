@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planejamento de Producao Himasa</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div class="hero__copy">
+          <div class="hero__brand">
+            <img
+              src="image copy.png"
+              alt="Logo Himasa"
+              class="hero__logo"
+            />
+            <div class="hero__brand-copy">
+              <p class="eyebrow">Planejamento semanal</p>
+              <h1>Centro de Producao Himasa</h1>
+            </div>
+          </div>
+          <p class="hero__lead">
+            Sistema interno para planejar a fila, controlar o refugo e
+            organizar a operacao em telas separadas.
+          </p>
+        </div>
+
+        <div class="hero__status">
+          <article class="status-tile">
+            <span>Janela produtiva</span>
+            <strong id="schedule-window">Domingo 22:40 ate Sabado 16:00</strong>
+          </article>
+          <article class="status-tile">
+            <span>Ultimo recalculo</span>
+            <strong id="last-recalc">--</strong>
+          </article>
+        </div>
+      </header>
+
+      <div class="workspace-shell">
+        <aside class="workspace-nav">
+          <div class="workspace-nav__head">
+            <p class="eyebrow">Navegacao</p>
+            <h2>Funcionalidades</h2>
+            <p class="workspace-nav__copy">
+              Cada fluxo agora fica em uma tela propria para reduzir ruído
+              visual e evitar mistura de contexto.
+            </p>
+          </div>
+
+          <nav id="view-nav" class="view-nav" aria-label="Telas principais">
+            <button type="button" class="view-link" data-view="overview">
+              <span>Visao geral</span>
+              <small>Resumo da semana e proximas ordens</small>
+            </button>
+            <button type="button" class="view-link" data-view="planning">
+              <span>Planejamento</span>
+              <small>Cadastro, fila e reordenacao</small>
+            </button>
+            <button type="button" class="view-link" data-view="completed-history">
+              <span>Pedidos prontos</span>
+              <small>Historico das ordens finalizadas</small>
+            </button>
+            <button type="button" class="view-link" data-view="scrap">
+              <span>Refugos</span>
+              <small>Lancamento e historico por ordem</small>
+            </button>
+            <button type="button" class="view-link" data-view="settings">
+              <span>Configuracoes</span>
+              <small>Calendario, produtividade e utilitarios</small>
+            </button>
+          </nav>
+
+          <div class="workspace-nav__foot">
+            <p class="eyebrow">Operacao</p>
+            <p class="workspace-nav__copy">
+              Todos os dados continuam salvos automaticamente no navegador desta
+              maquina.
+            </p>
+          </div>
+        </aside>
+
+        <main class="workspace-main">
+          <section class="screen-banner">
+            <p class="eyebrow" id="screen-eyebrow">Painel</p>
+            <h2 id="screen-title">Visao geral da operacao</h2>
+            <p class="screen-banner__description" id="screen-description">
+              Resumo da semana, indicadores e leitura rapida da fila.
+            </p>
+          </section>
+
+          <section class="screen" data-screen="overview">
+            <div class="screen-grid screen-grid--overview">
+              <section class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Radar</p>
+                    <h3>Resumo da fila</h3>
+                  </div>
+                  <p class="panel__hint" id="queue-hint">
+                    Nenhuma ordem cadastrada para a fila atual.
+                  </p>
+                </div>
+
+                <div class="metric-grid">
+                  <article class="metric-card">
+                    <span>Ordens ativas</span>
+                    <strong id="metric-orders">0</strong>
+                  </article>
+                  <article class="metric-card">
+                    <span>KG total</span>
+                    <strong id="metric-kg">0 kg</strong>
+                  </article>
+                  <article class="metric-card">
+                    <span>Horas totais</span>
+                    <strong id="metric-hours">0 h</strong>
+                  </article>
+                  <article class="metric-card">
+                    <span>Fim previsto</span>
+                    <strong id="metric-end">--</strong>
+                  </article>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Proximas ordens</p>
+                    <h3>Leitura rapida da sequencia</h3>
+                  </div>
+                  <p class="panel__hint">
+                    Amostra das proximas ordens para acompanhamento rapido.
+                  </p>
+                </div>
+
+                <div id="overview-orders" class="order-card-grid"></div>
+              </section>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="planning">
+            <div class="subscreen-shell">
+              <nav
+                id="planning-nav"
+                class="subscreen-nav"
+                aria-label="Subtelas de planejamento"
+              >
+                <button
+                  type="button"
+                  class="subscreen-link"
+                  data-planning-view="queue"
+                >
+                  <span>Fila</span>
+                  <small>Visualizar, editar e reordenar ordens</small>
+                </button>
+                <button
+                  type="button"
+                  class="subscreen-link"
+                  data-planning-view="create"
+                >
+                  <span>Cadastro de ordem</span>
+                  <small>Inserir novas ordens sem exibir a tabela</small>
+                </button>
+              </nav>
+
+              <section class="subscreen" data-planning-screen="queue">
+                <section class="panel panel--wide">
+                  <div class="panel__header">
+                    <div>
+                      <p class="eyebrow">Fila operacional</p>
+                      <h3>Ordens planejadas</h3>
+                    </div>
+                    <p class="panel__hint">
+                      Cards editaveis para sequencia, dados produtivos e janela
+                      prevista de cada ordem.
+                    </p>
+                  </div>
+
+                  <div id="orders-body" class="queue-list"></div>
+                </section>
+              </section>
+
+              <section class="subscreen" data-planning-screen="create">
+                <section class="panel">
+                  <div class="panel__header">
+                    <div>
+                      <p class="eyebrow">Inclusao</p>
+                      <h3>Nova ordem de producao</h3>
+                    </div>
+                    <p class="panel__hint">
+                      Cadastre uma ordem e ela entra automaticamente no fim da
+                      fila.
+                    </p>
+                  </div>
+
+                  <form id="order-form" class="order-form" autocomplete="off">
+                    <label class="form-field">
+                      <span>Numero da ordem</span>
+                      <input name="orderNumber" required />
+                    </label>
+
+                    <label class="form-field">
+                      <span>Cliente</span>
+                      <input name="client" required />
+                    </label>
+
+                    <label class="form-field">
+                      <span>KG planejado</span>
+                      <input
+                        name="plannedKg"
+                        type="number"
+                        min="0.01"
+                        step="0.01"
+                        required
+                      />
+                    </label>
+
+                    <label class="form-field">
+                      <span>Produtividade kg/h</span>
+                      <input
+                        name="rateKgPerHour"
+                        type="number"
+                        min="0.01"
+                        step="0.01"
+                      />
+                    </label>
+
+                    <button class="button-primary" type="submit">
+                      Adicionar a fila
+                    </button>
+                  </form>
+                </section>
+              </section>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="scrap">
+            <div class="subscreen-shell">
+              <nav
+                id="scrap-nav"
+                class="subscreen-nav"
+                aria-label="Subtelas de refugos"
+              >
+                <button
+                  type="button"
+                  class="subscreen-link"
+                  data-scrap-view="launch"
+                >
+                  <span>Lancar refugo</span>
+                  <small>Selecionar ordens e registrar novos lancamentos</small>
+                </button>
+                <button
+                  type="button"
+                  class="subscreen-link"
+                  data-scrap-view="history"
+                >
+                  <span>Historico</span>
+                  <small>Auditar e remover lancamentos de refugo</small>
+                </button>
+              </nav>
+
+              <section class="subscreen" data-scrap-screen="launch">
+                <section class="panel">
+                  <div class="panel__header">
+                    <div>
+                      <p class="eyebrow">Lancar refugo</p>
+                      <h3>Ordens disponiveis</h3>
+                    </div>
+                    <p class="panel__hint" id="history-hint">
+                      0 kg de refugo acumulado em 0 lancamento(s).
+                    </p>
+                  </div>
+
+                  <div id="scrap-orders" class="scrap-card-grid"></div>
+                </section>
+              </section>
+
+              <section class="subscreen" data-scrap-screen="history">
+                <section class="panel">
+                  <div class="panel__header">
+                    <div>
+                      <p class="eyebrow">Rastreabilidade</p>
+                      <h3>Historico de refugos</h3>
+                    </div>
+                    <p class="panel__hint">
+                      Cada lancamento pode ser auditado e removido se tiver sido
+                      inserido errado.
+                    </p>
+                  </div>
+
+                  <ul id="scrap-history" class="history-list"></ul>
+                </section>
+              </section>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="completed-history">
+            <section class="panel">
+              <div class="panel__header">
+                <div>
+                  <p class="eyebrow">Expedicao</p>
+                  <h3>Historico de pedidos prontos</h3>
+                </div>
+                <p class="panel__hint" id="completed-history-hint">
+                  Nenhum pedido pronto registrado ainda.
+                </p>
+              </div>
+
+              <ul id="completed-history-list" class="history-list"></ul>
+            </section>
+          </section>
+
+          <section class="screen" data-screen="settings">
+            <div class="screen-grid screen-grid--settings">
+              <section class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Parametros</p>
+                    <h3>Calendario e produtividade</h3>
+                  </div>
+                  <p class="panel__hint">
+                    Alteracoes aqui recalculam toda a fila automaticamente.
+                  </p>
+                </div>
+
+                <form id="settings-form" class="settings-grid" autocomplete="off">
+                  <label class="form-field">
+                    <span>Inicio base da fila</span>
+                    <input id="base-start" type="datetime-local" required />
+                  </label>
+
+                  <label class="form-field">
+                    <span>Produtividade padrao (kg/h)</span>
+                    <input
+                      id="default-rate"
+                      type="number"
+                      min="0.01"
+                      step="0.01"
+                    />
+                  </label>
+
+                  <label class="form-field">
+                    <span>Dia de abertura</span>
+                    <select id="week-start-day"></select>
+                  </label>
+
+                  <label class="form-field">
+                    <span>Hora de abertura</span>
+                    <input id="week-start-time" type="time" />
+                  </label>
+
+                  <label class="form-field">
+                    <span>Dia de fechamento</span>
+                    <select id="week-end-day"></select>
+                  </label>
+
+                  <label class="form-field">
+                    <span>Hora de fechamento</span>
+                    <input id="week-end-time" type="time" />
+                  </label>
+                </form>
+              </section>
+
+              <section class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Utilitarios</p>
+                    <h3>Saida e manutencao</h3>
+                  </div>
+                  <p class="panel__hint">
+                    Exporte relatorios ou restaure a base inicial carregada da
+                    planilha.
+                  </p>
+                </div>
+
+                <div class="tool-stack">
+                  <button id="export-csv" type="button">Exportar CSV</button>
+                  <button id="print-report" type="button">Gerar PDF</button>
+                  <button id="reset-data" type="button" class="ghost">
+                    Restaurar base inicial
+                  </button>
+                </div>
+
+                <div class="note-card">
+                  <strong>Observacao operacional</strong>
+                  <p>
+                    Os dados sao salvos automaticamente no navegador deste
+                    computador. A exportacao em CSV continua sendo compativel
+                    com o Excel.
+                  </p>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <section class="print-report" id="print-report-sheet" aria-hidden="true">
+        <header class="print-report__header">
+          <div class="print-report__brand">
+            <img src="image copy.png" alt="Logo Himasa" class="print-report__logo" />
+            <div>
+              <p class="print-report__eyebrow">Relatorio de producao</p>
+              <h1>Planejamento Operacional Himasa</h1>
+              <p id="print-generated-at" class="print-report__meta">--</p>
+            </div>
+          </div>
+
+          <div class="print-report__window">
+            <span>Janela produtiva</span>
+            <strong id="print-schedule-window">--</strong>
+          </div>
+        </header>
+
+        <section class="print-report__summary" id="print-summary"></section>
+
+        <section class="print-report__section">
+          <div class="print-report__section-head">
+            <h2>Ordens planejadas</h2>
+            <p>Fila atual com calculo de kg, horas, inicio e termino previstos.</p>
+          </div>
+
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th>Seq.</th>
+                <th>Ordem</th>
+                <th>Cliente</th>
+                <th>KG plan.</th>
+                <th>Refugo</th>
+                <th>KG/h</th>
+                <th>Horas</th>
+                <th>Inicio</th>
+                <th>Termino</th>
+              </tr>
+            </thead>
+            <tbody id="print-orders-body"></tbody>
+          </table>
+        </section>
+      </section>
+    </div>
+
+    <dialog id="scrap-dialog" class="dialog">
+      <form id="scrap-form" class="dialog__surface">
+        <div>
+          <p class="eyebrow">Refugo</p>
+          <h2 id="scrap-dialog-title">Registrar refugo</h2>
+        </div>
+
+        <input id="scrap-order-id" type="hidden" />
+
+        <label class="form-field">
+          <span>KG de refugo</span>
+          <input id="scrap-kg" type="number" min="0.01" step="0.01" required />
+        </label>
+
+        <label class="form-field">
+          <span>Data e hora do lancamento</span>
+          <input id="scrap-occurred-at" type="datetime-local" required />
+        </label>
+
+        <label class="form-field">
+          <span>Observacao</span>
+          <textarea
+            id="scrap-note"
+            rows="3"
+            placeholder="Opcional"
+          ></textarea>
+        </label>
+
+        <div class="dialog__actions">
+          <button id="scrap-cancel" type="button" class="ghost">
+            Cancelar
+          </button>
+          <button type="submit">Salvar refugo</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="completed-dialog" class="dialog">
+      <form id="completed-form" class="dialog__surface">
+        <div>
+          <p class="eyebrow">Expedicao</p>
+          <h2 id="completed-dialog-title">Registrar pedido pronto</h2>
+          <p id="completed-dialog-summary" class="dialog__meta">--</p>
+        </div>
+
+        <input id="completed-order-id" type="hidden" />
+
+        <label class="form-field">
+          <span>Data e hora da finalizacao</span>
+          <input id="completed-at" type="datetime-local" required />
+        </label>
+
+        <div class="dialog__actions">
+          <button id="completed-cancel" type="button" class="ghost">
+            Cancelar
+          </button>
+          <button type="submit">Confirmar pedido pronto</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
