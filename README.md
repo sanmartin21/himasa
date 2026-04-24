@@ -59,6 +59,7 @@ npm test
 - Os dados ficam salvos no navegador desta maquina.
 - O estado persistido inclui configuracoes, fila ativa, historico de refugos e historico de pedidos prontos.
 - `Restaurar base inicial` apaga os dados locais atuais e volta para a carga seed.
+- A carga seed atual e mantida internamente em `planner.js`.
 
 ## Estrutura do repositorio
 
@@ -71,4 +72,4 @@ npm test
 
 ## Fonte dos dados iniciais
 
-O arquivo `planejamento_producao.xlsx` permanece no repositorio como referencia da base operacional original.
+A carga inicial do sistema e mantida diretamente no codigo, em `planner.js`.

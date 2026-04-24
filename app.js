@@ -877,7 +877,7 @@ function openCompletedDialog(order) {
 
 function restoreInitialSeed() {
   const confirmed = window.confirm(
-    "Restaurar os dados iniciais importados da planilha? Os dados locais atuais serao perdidos.",
+    "Restaurar os dados iniciais do sistema? Os dados locais atuais serao perdidos.",
   );
 
   if (!confirmed) {

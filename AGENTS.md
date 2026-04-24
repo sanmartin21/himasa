@@ -125,8 +125,9 @@ Quando uma task mudar comportamento do sistema, este arquivo deve ser atualizado
   - `completedOrders`
   - `lastRecalculatedAt`
 - O sistema deve continuar carregando estados antigos que nao tenham `completedOrders`.
-- `Restaurar base inicial` apaga os dados locais atuais e volta para a carga seed.
+- `Restaurar base inicial` apaga os dados locais atuais e volta para a carga seed interna do sistema.
 - A fila vazia e um estado valido e nao deve recriar automaticamente a base seed.
+- A carga seed atual e mantida em `planner.js`, sem dependencia de arquivo Excel no repositorio.
 
 ## Estrutura funcional atual
 
